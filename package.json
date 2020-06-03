@@ -2,6 +2,10 @@
   "name": "set-operations",
   "version": "1.0.1",
   "description": "Javascript Set operations with ES6 Sets.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/indrajaala/set-operations.git"
+  },
   "main": "./dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
