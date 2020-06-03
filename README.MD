@@ -132,8 +132,8 @@ symmetricDifference(["sun", "rises", "in", "the", "east"], ["sun", "sets", "in",
 
 MIT
 
-[npm-img]: https://img.shields.io/npm/v/j-sets.svg
-[npm-url]: https://npmjs.com/package/j-sets
-[pipeline-status-img]: https://gitlab.com/indrajaala/j-sets/badges/master/pipeline.svg
-[coverage-report-img]: https://gitlab.com/indrajaala/j-sets/badges/master/coverage.svg
-[repo-url]: https://gitlab.com/indrajaala/j-sets/commits/master
+[npm-img]: https://img.shields.io/npm/v/set-operations.svg
+[npm-url]: https://npmjs.com/package/set-operations
+[pipeline-status-img]: https://gitlab.com/indrajaala/set-operations/badges/master/pipeline.svg
+[coverage-report-img]: https://gitlab.com/indrajaala/set-operations/master/coverage.svg
+[repo-url]: https://gitlab.com/indrajaala/set-operations/commits/master
