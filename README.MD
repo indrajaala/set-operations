@@ -106,9 +106,9 @@ intersection([67, 21, 52, 78, 32, 321, 98, 97], [342, 52, 63, 89, 21]);
 ```js
 import {difference} from "set-operations";
 
-difference([43, 562, 223, 652, 1], [43, 42, 524, 542, 100, 42, 52]);
+difference([43, 562,52, 223, 652, 1], [43, 42, 524, 542, 100, 52]);
 
-// Set { 223, 562, 652 }
+// Set { 562, 223, 652, 1 }
 ```
 
 <h3>symmetric difference</h3>
