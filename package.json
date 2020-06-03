@@ -1,6 +1,6 @@
 {
   "name": "set-operations",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Javascript Set operations with ES6 Sets.",
   "main": "./dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,16 @@
     "build": "tsc",
     "test": "jest --coverage"
   },
-  "keywords": ["sets","union","superset","subset","difference","intersection","algebra","javascript"],
+  "keywords": [
+    "sets",
+    "union",
+    "superset",
+    "subset",
+    "difference",
+    "intersection",
+    "algebra",
+    "javascript"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
