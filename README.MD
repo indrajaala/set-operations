@@ -135,5 +135,5 @@ MIT
 [npm-img]: https://img.shields.io/npm/v/set-operations.svg
 [npm-url]: https://npmjs.com/package/set-operations
 [pipeline-status-img]: https://gitlab.com/indrajaala/set-operations/badges/master/pipeline.svg
-[coverage-report-img]: https://gitlab.com/indrajaala/set-operations/badges/master/pipeline.svg
+[coverage-report-img]: https://gitlab.com/indrajaala/set-operations/badges/master/coverage.svg
 [repo-url]: https://gitlab.com/indrajaala/set-operations/commits/master
