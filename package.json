@@ -18,6 +18,7 @@
     "superset",
     "subset",
     "difference",
+    "symmetric difference",
     "intersection",
     "algebra",
     "javascript"
