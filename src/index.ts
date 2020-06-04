@@ -29,8 +29,9 @@ const union: SetOp = (arrA, arrB, returnAsArray = false) => {
 };
 
 const intersection: SetOp = (arrA, arrB, returnAsArray = false) => {
+    const setA = new Set(arrA);
     const setB = new Set(arrB);
-    const intersection = new Set(arrA.filter(x => setB.has(x)));
+    const intersection = new Set([...setA].filter(x => setB.has(x)));
     if (returnAsArray) {
         return [...intersection];
     } else {
@@ -39,8 +40,9 @@ const intersection: SetOp = (arrA, arrB, returnAsArray = false) => {
 };
 
 const difference: SetOp = (arrA, arrB, returnAsArray = false) => {
+    const setA = new Set(arrA);
     const setB = new Set(arrB);
-    const difference = new Set(arrA.filter(x => !setB.has(x)));
+    const difference = new Set([...setA].filter(x => !setB.has(x)));
     if (returnAsArray) {
         return [...difference];
     } else {

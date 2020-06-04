@@ -46,9 +46,10 @@ union, intersection, difference, symmetric difference: (arrA, arrB, returnAsArra
 * arrB - Array
 * returnAsArray - boolean , default - false, if set true, returns the result as an array instead of a Set.
 
-<h3>
-isSuperSet
-</h3>
+<h3>isSuperSet</h3>
+
+<p>Superset (A ⊇ B) : check if Arr A is superset of Arr B, i.e all elements of B are also elements of A. </p>
+
 
 ```js
 import {isSuperSet} from "set-operations";
@@ -64,6 +65,9 @@ isSuperSet(['apple', 'orange', 'banana'], ['banana']);
 ```
 
 <h3>isSubSet</h3>
+
+<p>Subset (A ⊆ B) : check if Arr A is subset of Arr B, i.e all elements of A are also elements of B. </p>
+
 
 ```js
 import {isSubSet} from "set-operations";
