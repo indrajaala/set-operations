@@ -6,14 +6,14 @@
     "type": "git",
     "url": "https://github.com/indrajaala/set-operations.git"
   },
-  "main": "./dist/index.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist/**/*.js",
     "dist/**/*.d.ts"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "node_modules/rollup/dist/bin/rollup -c",
     "test": "jest --coverage"
   },
   "keywords": [
@@ -30,12 +30,15 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "jest": "^26.0.1",
-    "typescript": "^3.9.3",
-    "@types/jest": "^25.2.3",
-    "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
-    "@babel/preset-typescript": "^7.10.1",
-    "babel-jest": "^26.0.1"
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@types/jest": "^26.0.7",
+    "babel-jest": "^26.1.0",
+    "jest": "^26.1.0",
+    "rollup": "^2.23.0",
+    "rollup-plugin-typescript2": "^0.27.1",
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.7"
   }
 }
