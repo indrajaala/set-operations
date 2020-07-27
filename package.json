@@ -1,6 +1,6 @@
 {
   "name": "set-operations",
-  "version": "1.0.3",
+  "version": "1.1",
   "description": "Javascript Set operations with ES6 Sets.",
   "repository": {
     "type": "git",
