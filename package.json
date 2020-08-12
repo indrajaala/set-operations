@@ -1,19 +1,21 @@
 {
   "name": "set-operations",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Javascript Set operations with ES6 Sets.",
   "repository": {
     "type": "git",
     "url": "https://github.com/indrajaala/set-operations.git"
   },
-  "main": "dist/index.js",
+  "main": "dist/bundle.js",
+  "browser": "dist/bundle.umd.js",
+  "module": "dist/bundle.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist/**/*.js",
     "dist/**/*.d.ts"
   ],
   "scripts": {
-    "build": "node_modules/rollup/dist/bin/rollup -c",
+    "build": "npx rollup -c",
     "test": "jest --coverage"
   },
   "keywords": [
