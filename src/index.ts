@@ -1,6 +1,4 @@
-type SubSuperOp = <T>(arrA: T[], arrB: T[]) => boolean;
-
-const isSuperSet: SubSuperOp = (arrA, arrB) => {
+const isSuperSet = <T>(arrA:T[], arrB:T[]):boolean => {
     const setA = new Set(arrA);
     const setB = new Set(arrB);
     for (let item of setB) {
@@ -11,14 +9,11 @@ const isSuperSet: SubSuperOp = (arrA, arrB) => {
     return true
 };
 
-const isSubSet: SubSuperOp = (arrA, arrB) => {
+const isSubSet = <T>(arrA:T[], arrB:T[]):boolean => {
     return isSuperSet(arrB, arrA);
 };
 
-function union<T>(arrA: T[], arrB: T[]): Set<T>;
-function union<T>(arrA: T[], arrB: T[], returnAsArray: true): T[];
-function union<T>(arrA: T[], arrB: T[], returnAsArray: false): Set<T>;
-function union<T>(arrA: T[], arrB: T[], returnAsArray = false): T[] | Set<T> {
+const union = <T>(arrA: T[], arrB: T[], returnAsArray?: boolean): T[] | Set<T> => {
     const setA = new Set(arrA);
     const setB = new Set(arrB);
     const union = new Set([...setA, ...setB]);
@@ -29,10 +24,7 @@ function union<T>(arrA: T[], arrB: T[], returnAsArray = false): T[] | Set<T> {
     }
 }
 
-function intersection<T>(arrA: T[], arrB: T[]): Set<T>;
-function intersection<T>(arrA: T[], arrB: T[], returnAsArray: true): T[];
-function intersection<T>(arrA: T[], arrB: T[], returnAsArray: false): Set<T>;
-function intersection<T>(arrA: T[], arrB: T[], returnAsArray = false): T[] | Set<T> {
+const intersection = <T>(arrA: T[], arrB: T[], returnAsArray?: boolean): T[] | Set<T> => {
     const setA = new Set(arrA);
     const setB = new Set(arrB);
     const intersection = new Set([...setA].filter(x => setB.has(x)));
@@ -43,10 +35,7 @@ function intersection<T>(arrA: T[], arrB: T[], returnAsArray = false): T[] | Set
     }
 }
 
-function difference<T>(arrA: T[], arrB: T[]): Set<T>;
-function difference<T>(arrA: T[], arrB: T[], returnAsArray: true): T[];
-function difference<T>(arrA: T[], arrB: T[], returnAsArray: false): Set<T>;
-function difference<T>(arrA: T[], arrB: T[], returnAsArray = false): T[] | Set<T> {
+const difference = <T>(arrA: T[], arrB: T[], returnAsArray?: boolean): T[] | Set<T> => {
     const setA = new Set(arrA);
     const setB = new Set(arrB);
     const difference = new Set([...setA].filter(x => !setB.has(x)));
@@ -57,10 +46,7 @@ function difference<T>(arrA: T[], arrB: T[], returnAsArray = false): T[] | Set<T
     }
 }
 
-function symmetricDifference<T>(arrA: T[], arrB: T[]): Set<T>;
-function symmetricDifference<T>(arrA: T[], arrB: T[], returnAsArray: true): T[];
-function symmetricDifference<T>(arrA: T[], arrB: T[], returnAsArray: false): Set<T>;
-function symmetricDifference<T>(arrA: T[], arrB: T[], returnAsArray = false): T[] | Set<T> {
+const symmetricDifference = <T>(arrA: T[], arrB: T[], returnAsArray?: boolean): T[] | Set<T> => {
     const symmetricDifference = new Set([...difference(arrA, arrB), ...difference(arrB, arrA)]);
     if (returnAsArray) {
         return [...symmetricDifference];
