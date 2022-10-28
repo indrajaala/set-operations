@@ -14,7 +14,7 @@
   "module": "./dist/main.js",
   "exports": {
     ".": {
-      "import": "./distmainb.js",
+      "import": "./dist/main.js",
       "require": "./dist/main.umd.cjs"
     }
   },
