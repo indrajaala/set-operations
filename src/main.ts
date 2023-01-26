@@ -1,18 +1,32 @@
 import {isEqual} from "lodash-es";
 
-type SubSuperOps = (A: any[] | { [key: string]: any }, B: any[] | { [key: string]: any }) => boolean;
-type SetOps = (A: any[] | { [key: string]: any }, B: any[] | { [key: string]: any }) => any[] | { [key: string]: any };
+type AllowedTypes<T = any> = T[] | Set<T> | { [key: string]: T}
+type SubSuperOps = (A: AllowedTypes, B: AllowedTypes) => boolean;
+type SetOps<T = unknown> = (A: AllowedTypes<T>, B: AllowedTypes<T>) => AllowedTypes<T>;
+type StringIndexable = { [key: string]: any }
 
 
-const isSuperSet: SubSuperOps = (A, B) => {
+function isSet(x:any): x is Set<unknown> { return x instanceof Set }
+function isNonArrayObject<T = any>(o: any): o is { [key: string]: T} { return Object.prototype.toString.call(o) === "[object Object]" }
+const bothMatches = (predicate : (x:any) => boolean) => (A:any,B:any) => predicate(A) && predicate(B)
+const bothAreOfTypeSet = bothMatches(isSet)
 
-    if (typeof A === 'object' && !Array.isArray(A) && typeof B === 'object' && !Array.isArray(B)) {
+const isSuperSetObject = (A:StringIndexable, B:StringIndexable) => {
         for (let key in B) {
             if (!isEqual(B[key], A[key])) {
                 return false;
             }
         }
         return true;
+}
+
+const isSuperSet: SubSuperOps = (A, B) => {
+    if(bothAreOfTypeSet(A,B)) {
+        return isSuperSet( [...A.values()], [...B.values()])
+    }
+
+    if (isNonArrayObject(A) && isNonArrayObject(B)) {
+        return isSuperSetObject(A,B)
     } else if (Array.isArray(A) && Array.isArray(B)) {
         const setA = new Set(A);
         const setB = new Set(B);
@@ -31,10 +45,13 @@ const isSubSet: SubSuperOps = (A, B) => {
     return isSuperSet(B, A);
 };
 
-const union: SetOps = (A, B): any[] | { [key: string]: any } => {
-    if (typeof A === 'object' && !Array.isArray(A) && typeof B === 'object' && !Array.isArray(B)) {
-        return {...A, ...B};
+const union: SetOps = (A, B) => {
+    if(isSet(A) && isSet(B)) {
+        return new Set(union(Array.from(A), Array.from(B)) as Array<any>);
+    }
 
+    if (isNonArrayObject(A) && isNonArrayObject(B)) {
+        return {...A, ...B};
     } else if (Array.isArray(A) && Array.isArray(B)) {
         const setA = new Set(A);
         const setB = new Set(B);
@@ -46,16 +63,23 @@ const union: SetOps = (A, B): any[] | { [key: string]: any } => {
 
 }
 
-const intersection: SetOps = (A, B): any[] | { [key: string]: any } => {
-    if (typeof A === 'object' && !Array.isArray(A) && typeof B === 'object' && !Array.isArray(B)) {
-        const intersectionElements: { [key: string]: any } = {};
-        for (let key in A) {
-            if (isEqual(A[key], B[key])) {
+const intersectObjects = (A:StringIndexable, B: StringIndexable) => {
+        const intersectionElements: StringIndexable = {};
+        for (let key in A ) {
+            if (isEqual( (A as StringIndexable)[key], (B as StringIndexable)[key])) {
                 intersectionElements[key] = A[key]
             }
 
         }
         return intersectionElements;
+}
+const intersection: SetOps = (A, B) => {
+    if(isSet(A) && isSet(B)) {
+        return new Set(intersection(Array.from(A), Array.from(B)) as Array<any>);
+    }
+
+    if (isNonArrayObject(A) && isNonArrayObject(B)) {
+        return intersectObjects(A, B)
     } else if (Array.isArray(A) && Array.isArray(B)) {
         const setA = new Set(A);
         const setB = new Set(B);
@@ -66,8 +90,7 @@ const intersection: SetOps = (A, B): any[] | { [key: string]: any } => {
     }
 }
 
-const difference: SetOps = (A, B): any[] | { [key: string]: any } => {
-    if (typeof A === 'object' && !Array.isArray(A) && typeof B === 'object' && !Array.isArray(B)) {
+const diffObjects = (A: StringIndexable,B:StringIndexable) => {
         const differenceElements: { [key: string]: any } = {};
         for (let key in A) {
             if (!isEqual(A[key], B[key])) {
@@ -75,6 +98,14 @@ const difference: SetOps = (A, B): any[] | { [key: string]: any } => {
             }
         }
         return differenceElements;
+}
+const difference: SetOps = (A, B) => {
+    if(isSet(A) && isSet(B)) {
+        return new Set(difference(Array.from(A), Array.from(B)) as Array<any>);
+    }
+
+    if (isNonArrayObject(A) && isNonArrayObject(B)) {
+        return diffObjects(A,B)
     } else if (Array.isArray(A) && Array.isArray(B)) {
 
         const setA = new Set(A);
@@ -87,8 +118,12 @@ const difference: SetOps = (A, B): any[] | { [key: string]: any } => {
     }
 }
 
-const symmetricDifference: SetOps = (A, B): any[] | { [key: string]: any } => {
-    if (typeof A === 'object' && !Array.isArray(A) && typeof B === 'object' && !Array.isArray(B)) {
+const symmetricDifference: SetOps = (A, B) => {
+    if(isSet(A) && isSet(B)) {
+        return new Set(symmetricDifference(Array.from(A), Array.from(B)) as Array<any>);
+    }
+
+    if (isNonArrayObject(A) && isNonArrayObject(B)) {
         return {...difference(A, B), ...difference(B, A)};
     } else if (Array.isArray(A) && Array.isArray(B)) {
         const symmetricDifference = new Set([...difference(A, B) as any[], ...difference(B, A) as any[]]);
