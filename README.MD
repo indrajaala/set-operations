@@ -4,7 +4,7 @@
 ![example workflow](https://github.com/indrajaala/set-operations/actions/workflows/test.yml/badge.svg)
 ![example workflow](https://github.com/indrajaala/set-operations/actions/workflows/npm-publish.yml/badge.svg)
 
-Javascript Set operations with Arrays & Objects.
+Javascript set operations with Arrays, Objects and Sets.
 
 
 ## Installation
@@ -37,17 +37,17 @@ npm run build
 ### args
 isSubset, isSuperSet: (A, B) 
 
-* A - Array | obj
-* B - Array | obj
+* A - Array | object | Set
+* B - Array | object | Set
 
 returns boolean
 
 union, intersection, difference, symmetric difference: (A, B)
 
-* arrA - Array | obj
-* arrB - Array | obj
+* arrA - Array | object | Set
+* arrB - Array | object | Set
 
-returns Array | obj
+returns Array | object | Set
 
 
 <h2>Examples:<h4>
@@ -66,7 +66,7 @@ isSuperSet([1, 8, 3, 5], [3, 8]);
 isSuperSet([1, 8, 3, 5], [3, 9]);
 // false
 
-isSuperSet(['apple', 'orange', 'banana'], ['banana']);
+isSuperSet(new Set(['apple', 'orange', 'banana']), new Set(['banana']);
 // true
 
 isSuperSet({id:'xyz', name:"john doe",age:59, work:"janitor"},{id:'xyz', work:"janitor"});
