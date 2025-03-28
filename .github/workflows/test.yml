@@ -5,9 +5,9 @@ name: tests
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "dev/*" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master", "dev/*" ]
 
 jobs:
   test:
@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [22.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:

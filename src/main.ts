@@ -1,101 +1,107 @@
 import {isEqual} from "lodash-es";
+import {isSet, isObject} from "@/utils";
+import type {SetOps} from "@/types";
 
-type SubSuperOps = (A: any[] | { [key: string]: any }, B: any[] | { [key: string]: any }) => boolean;
-type SetOps = (A: any[] | { [key: string]: any }, B: any[] | { [key: string]: any }) => any[] | { [key: string]: any };
+const invalidArgumentMessage = "Invalid argument!";
 
-
-const isSuperSet: SubSuperOps = (A, B) => {
-
-    if (typeof A === 'object' && !Array.isArray(A) && typeof B === 'object' && !Array.isArray(B)) {
-        for (let key in B) {
+const isSuperset: SetOps<unknown> = (A, B) => {
+    if (isObject(A) && isObject(B)) {
+        for (const key in B) {
             if (!isEqual(B[key], A[key])) {
                 return false;
             }
         }
         return true;
     } else if (Array.isArray(A) && Array.isArray(B)) {
-        const setA = new Set(A);
-        const setB = new Set(B);
-        for (let item of setB) {
-            if (!setA.has(item)) {
-                return false
+        return new Set(A).isSupersetOf(new Set(B));
+    } else if (isSet(A) && isSet(B)) {
+        return A.isSupersetOf(B);
+    } else {
+        throw new Error(invalidArgumentMessage);
+    }
+};
+
+const isSubset: SetOps<unknown> = (A, B) => {
+    return isSuperset(B, A);
+};
+
+const isDisjoint: SetOps<unknown> = (A, B) => {
+    if (isObject(A) && isObject(B)) {
+        for (const key in A) {
+            if (isEqual(B[key], A[key])) {
+                return false;
             }
         }
-        return true
-    } else {
-        throw new Error("Invalid argument type!")
-    }
-};
-
-const isSubSet: SubSuperOps = (A, B) => {
-    return isSuperSet(B, A);
-};
-
-const union: SetOps = (A, B): any[] | { [key: string]: any } => {
-    if (typeof A === 'object' && !Array.isArray(A) && typeof B === 'object' && !Array.isArray(B)) {
-        return {...A, ...B};
-
+        return true;
     } else if (Array.isArray(A) && Array.isArray(B)) {
-        const setA = new Set(A);
-        const setB = new Set(B);
-        const union = new Set([...setA, ...setB]);
-        return [...union];
+        return new Set(A).isDisjointFrom(new Set(B));
+    } else if (isSet(A) && isSet(B)) {
+        return A.isDisjointFrom(B);
     } else {
-        throw new Error("Invalid argument type!")
+        throw new Error(invalidArgumentMessage);
     }
+};
 
-}
 
-const intersection: SetOps = (A, B): any[] | { [key: string]: any } => {
-    if (typeof A === 'object' && !Array.isArray(A) && typeof B === 'object' && !Array.isArray(B)) {
+const union: SetOps<unknown> = (A, B) => {
+    if (isObject(A) && isObject(B)) {
+        return {...A, ...B};
+    } else if (Array.isArray(A) && Array.isArray(B)) {
+        return Array.from(new Set(A).union(new Set(B)));
+    } else if (isSet(A) && isSet(B)) {
+        return A.union(B);
+    } else {
+        throw new Error(invalidArgumentMessage);
+    }
+};
+union(new Set(["rio", "delhi", "nairobi"]), new Set(["morocco", "algeria", "texas"])); //?
+
+const intersection: SetOps<unknown> = (A, B) => {
+    if (isObject(A) && isObject(B)) {
         const intersectionElements: { [key: string]: any } = {};
-        for (let key in A) {
+        for (const key in A) {
             if (isEqual(A[key], B[key])) {
-                intersectionElements[key] = A[key]
+                intersectionElements[key] = A[key];
             }
-
         }
         return intersectionElements;
     } else if (Array.isArray(A) && Array.isArray(B)) {
-        const setA = new Set(A);
-        const setB = new Set(B);
-        const intersection = new Set([...setA].filter(x => setB.has(x)));
-        return [...intersection];
+        return Array.from(new Set(A).intersection(new Set(B)));
+    } else if (isSet(A) && isSet(B)) {
+        return A.intersection(B);
     } else {
-        throw new Error("Invalid argument type!")
+        throw new Error(invalidArgumentMessage);
     }
-}
+};
 
-const difference: SetOps = (A, B): any[] | { [key: string]: any } => {
-    if (typeof A === 'object' && !Array.isArray(A) && typeof B === 'object' && !Array.isArray(B)) {
+const difference: SetOps<unknown> = (A, B) => {
+    if (isObject(A) && isObject(B)) {
         const differenceElements: { [key: string]: any } = {};
-        for (let key in A) {
+        for (const key in A) {
             if (!isEqual(A[key], B[key])) {
-                differenceElements[key] = A[key]
+                differenceElements[key] = A[key];
             }
         }
         return differenceElements;
     } else if (Array.isArray(A) && Array.isArray(B)) {
-
-        const setA = new Set(A);
-        const setB = new Set(B);
-        const difference = new Set([...setA].filter(x => !setB.has(x)));
-        return [...difference];
-
+        return Array.from(new Set(A).difference(new Set(B)));
+    } else if (isSet(A) && isSet(B)) {
+        return A.difference(B);
     } else {
-        throw new Error("Invalid argument type!")
+        throw new Error(invalidArgumentMessage);
     }
-}
+};
 
-const symmetricDifference: SetOps = (A, B): any[] | { [key: string]: any } => {
-    if (typeof A === 'object' && !Array.isArray(A) && typeof B === 'object' && !Array.isArray(B)) {
-        return {...difference(A, B), ...difference(B, A)};
+const symmetricDifference: SetOps<unknown> = (A, B) => {
+    if (isObject(A) && isObject(B)) {
+        return {...difference(A, B) as {}, ...difference(B, A) as {}};
     } else if (Array.isArray(A) && Array.isArray(B)) {
-        const symmetricDifference = new Set([...difference(A, B) as any[], ...difference(B, A) as any[]]);
-        return [...symmetricDifference];
+        return Array.from(new Set(A).symmetricDifference(new Set(B)));
+    } else if (isSet(A) && isSet(B)) {
+        return A.symmetricDifference(B);
     } else {
-        throw new Error("Invalid argument type!")
+        throw new Error(invalidArgumentMessage);
     }
-}
+};
 
-export {isSubSet, isSuperSet, union, intersection, difference, symmetricDifference};
+export {isSubset, isSuperset, isDisjoint, union, intersection, difference, symmetricDifference};

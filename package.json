@@ -1,6 +1,6 @@
 {
   "name": "set-operations",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "Javascript Set operations",
   "type": "module",
   "repository": {
@@ -20,10 +20,9 @@
   },
   "types": "dist/main.d.ts",
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "test": "vitest run --coverage"
+    "test": "vitest",
+    "test-coverage": "vitest run --coverage"
   },
   "keywords": [
     "sets",
@@ -39,13 +38,12 @@
   "author": "indrajaala",
   "license": "MIT",
   "devDependencies": {
-    "@types/lodash": "^4.14.186",
-    "@types/lodash-es": "^4.17.6",
-    "@vitest/coverage-c8": "^0.24.3",
-    "typescript": "^4.8.4",
-    "vite": "^3.2.0",
-    "vite-plugin-dts": "^1.6.6",
-    "vitest": "^0.24.3",
+    "@types/lodash-es": "^4.17.12",
+    "@vitest/coverage-v8": "^3.0.9",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.3",
+    "vite-plugin-dts": "^4.5.3",
+    "vitest": "^3.0.9",
     "lodash-es": "^4.17.21"
   },
   "dependencies": {

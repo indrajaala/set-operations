@@ -1,4 +1,11 @@
-## v.2.0.0
+## v3.0.0
+
+- added support for Sets, which uses native JS Set and Set methods
+- added new set operation - `isDisjoint`
+- casing of module names changed to be more consistent with native JS Set methods
+- improved type support
+
+## v2.0.0
 
 - now supports operations on both arrays and objects
 - return values are arrays for input- arrays and objects for input- objects, 
