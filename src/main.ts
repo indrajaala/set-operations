@@ -54,7 +54,6 @@ const union: SetOps<unknown> = (A, B) => {
         throw new Error(invalidArgumentMessage);
     }
 };
-union(new Set(["rio", "delhi", "nairobi"]), new Set(["morocco", "algeria", "texas"])); //?
 
 const intersection: SetOps<unknown> = (A, B) => {
     if (isObject(A) && isObject(B)) {
