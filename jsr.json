@@ -5,5 +5,13 @@
   "exports": "./src/main.ts",
   "imports": {
     "@/": "./src/"
+  },
+  "publish": {
+    "include": [
+      "jsr.json",
+      "LICENSE",
+      "README.MD",
+      "src/**/*.ts"
+    ]
   }
 }
