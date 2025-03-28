@@ -1,8 +1,8 @@
 # set-operations
 
 [![npm][npm-img]][npm-url]
-![example workflow](https://github.com/indrajaala/set-operations/actions/workflows/test.yml/badge.svg)
-![example workflow](https://github.com/indrajaala/set-operations/actions/workflows/npm-publish.yml/badge.svg)]
+![Tests][github-test-badge]
+![Publish][github-publish-badge]
 
 Javascript Set operations with Sets, Arrays & Objects.
 
@@ -34,8 +34,6 @@ npm run test
 - [difference](#difference)
 - [symmetric difference](#symmetric-difference)
 
-</ul>
-
 ### args
 
 isSubset, isSuperSet, isDisjoint: (A, B)
@@ -54,9 +52,9 @@ returns Array | Obj | Set
 
 <h2>Examples:<h4>
 
-<h3>isSuperset</h3>
+### isSuperset
 
-<p>Superset (A ⊇ B) : checks if A is superset of B, i.e. all elements of B are also elements of A. </p>
+Superset (A ⊇ B) : checks if A is superset of B, i.e. all elements of B are also elements of A.
 
 ```js
 import {isSuperSet} from "set-operations";
@@ -91,9 +89,9 @@ isSuperSet(
 
 ```
 
-<h3>isSubset</h3>
+### isSubset
 
-<p>Subset (A ⊆ B) : checks if A is subset of B, i.e. all elements of A are also elements of B. </p>
+Subset (A ⊆ B) : checks if A is subset of B, i.e. all elements of A are also elements of B. 
 
 ```js
 import {isSubSet} from "set-operations";
@@ -131,9 +129,9 @@ isSubSet(
 
 
 ```
-<h3>isDisjoint</h3>
+### isDisjoint
 
-<p>Disjoint A ∩ B = ϕ: checks if A and B are disjoint i.e. A and B have no elements in common.</p>
+Disjoint A ∩ B = ϕ: checks if A and B are disjoint i.e. A and B have no elements in common.
 
 ```js
 import {isDisjoint} from "set-operations";
@@ -157,9 +155,9 @@ isDisjoint(
 // true
 ```
 
-<h3>union</h3>
+### union
 
-<p>Union (A ∪ B): creates a Set/Arr/Obj that contains the elements of both A and B.</p>
+Union (A ∪ B): creates a Set/Arr/Obj that contains the elements of both A and B.
 
 ```js
 import {union} from "set-operations";
@@ -177,10 +175,10 @@ union(
 // { firstname: "john", lastname: "doe", age: 59, hobbies: [ "fishing", "cycling" ] }
 ```
 
-note:for objects, union puts the elements of A and elements of B in to a new object - {...A, ...B,},
+**note:** for objects, union puts the elements of A and elements of B in to a new object - {...A, ...B,},
 if the keys of elements in both A and B are same then the elements of B replaces elements of A.
 
-<h3>intersection</h3>
+### intersection
 
 Intersection (A ∩ B): creates a Set/Arr/Obj that contains those elements of A that are also in B.
 
@@ -202,9 +200,9 @@ intersection(
 
 ```
 
-<h3>difference</h3>
+### difference
 
-<p>Difference (A \ B): creates a Set/Arr/Obj that contains those elements of A that are not in B.</p>
+Difference (A \ B): creates a Set/Arr/Obj that contains those elements of A that are not in B.
 
 ```js
 import {difference} from "set-operations";
@@ -225,9 +223,9 @@ difference(
 
 ```
 
-<h3>symmetric difference</h3>
+### symmetric difference
 
-<p>Symmetric Difference (A ∆ B): creates a Set/Arr/Obj of all elements which are in A or B but not both.</p>
+Symmetric Difference (A ∆ B): creates a Set/Arr/Obj of all elements which are in A or B but not both.
 
 ```js
 import {symmetricDifference} from "set-operations";
@@ -252,7 +250,7 @@ symmetricDifference(
 
 ```
 
-note:for objects, symmetric difference performs difference on A to B and then B to A and puts the elements in to a new
+**note:** for objects, symmetric difference performs difference on A to B and then B to A and puts the elements in to a new
 object - {...difference(A, B), ...difference(B, A)},
 if the keys of elements in both A and B are same then the elements of B replaces elements of A.
 
@@ -269,5 +267,6 @@ symmetricDifference(
 MIT
 
 [npm-img]: https://img.shields.io/npm/v/set-operations.svg
-
 [npm-url]: https://npmjs.com/package/set-operations
+[github-test-badge]: https://github.com/indrajaala/set-operations/actions/workflows/test.yml/badge.svg
+[github-publish-badge]: https://github.com/indrajaala/set-operations/actions/workflows/npm-publish.yml/badge.svg
