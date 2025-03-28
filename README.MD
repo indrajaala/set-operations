@@ -1,8 +1,10 @@
 # set-operations
 
-[![npm][npm-img]][npm-url]
-![Tests][github-test-badge]
-![Publish][github-publish-badge]
+[![npm][npm-img]][npm-url]  
+[![jsr][jsr-img]][jsr-url]  
+![tests][github-test-badge]  
+![publish-NPM][publish-npm-badge]  
+![publish-JSR][publish-jsr-badge]  
 
 Javascript Set operations with Sets, Arrays & Objects.
 
@@ -268,5 +270,8 @@ MIT
 
 [npm-img]: https://img.shields.io/npm/v/set-operations.svg
 [npm-url]: https://npmjs.com/package/set-operations
+[jsr-img]: https://img.shields.io/jsr/v/@indrajaala/set-operations
+[jsr-url]: https://jsr.io/@indrajaala/set-operations
 [github-test-badge]: https://github.com/indrajaala/set-operations/actions/workflows/test.yml/badge.svg
-[github-publish-badge]: https://github.com/indrajaala/set-operations/actions/workflows/npm-publish.yml/badge.svg
+[publish-npm-badge]: https://github.com/indrajaala/set-operations/actions/workflows/publish-npm.yml/badge.svg
+[publish-jsr-badge]: https://github.com/indrajaala/set-operations/actions/workflows/publish-jsr.yml/badge.svg
