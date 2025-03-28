@@ -131,7 +131,7 @@ isSubSet(
 ```
 ### isDisjoint
 
-Disjoint A ∩ B = ϕ: checks if A and B are disjoint i.e. A and B have no elements in common.
+Disjoint (A ∩ B = ϕ) : checks if A and B are disjoint i.e. A and B have no elements in common.
 
 ```js
 import {isDisjoint} from "set-operations";
