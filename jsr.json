@@ -1,6 +1,6 @@
 {
   "name": "@indrajaala/set-operations",
-  "version": "0.1.0",
+  "version": "3.0.2",
   "license": "MIT",
   "exports": "./src/main.ts"
 }
