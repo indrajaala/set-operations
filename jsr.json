@@ -2,5 +2,8 @@
   "name": "@indrajaala/set-operations",
   "version": "3.0.2",
   "license": "MIT",
-  "exports": "./src/main.ts"
+  "exports": "./src/main.ts",
+  "imports": {
+    "@/": "./src/"
+  }
 }
