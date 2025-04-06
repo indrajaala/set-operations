@@ -4,7 +4,7 @@ import type {SetOps} from "@/types";
 
 const invalidArgumentMessage = "Invalid argument!";
 
-const isSuperset: SetOps<unknown> = (A, B) => {
+const isSuperset: SetOps = (A, B) => {
     if (isObject(A) && isObject(B)) {
         for (const key in B) {
             if (!isEqual(B[key], A[key])) {
@@ -21,11 +21,11 @@ const isSuperset: SetOps<unknown> = (A, B) => {
     }
 };
 
-const isSubset: SetOps<unknown> = (A, B) => {
+const isSubset: SetOps = (A, B) => {
     return isSuperset(B, A);
 };
 
-const isDisjoint: SetOps<unknown> = (A, B) => {
+const isDisjoint: SetOps = (A, B) => {
     if (isObject(A) && isObject(B)) {
         for (const key in A) {
             if (isEqual(B[key], A[key])) {
@@ -43,7 +43,7 @@ const isDisjoint: SetOps<unknown> = (A, B) => {
 };
 
 
-const union: SetOps<unknown> = (A, B) => {
+const union: SetOps = (A, B) => {
     if (isObject(A) && isObject(B)) {
         return {...A, ...B};
     } else if (Array.isArray(A) && Array.isArray(B)) {
@@ -55,7 +55,7 @@ const union: SetOps<unknown> = (A, B) => {
     }
 };
 
-const intersection: SetOps<unknown> = (A, B) => {
+const intersection: SetOps = (A, B) => {
     if (isObject(A) && isObject(B)) {
         const intersectionElements: { [key: string]: any } = {};
         for (const key in A) {
@@ -73,7 +73,7 @@ const intersection: SetOps<unknown> = (A, B) => {
     }
 };
 
-const difference: SetOps<unknown> = (A, B) => {
+const difference: SetOps = (A, B) => {
     if (isObject(A) && isObject(B)) {
         const differenceElements: { [key: string]: any } = {};
         for (const key in A) {
@@ -91,7 +91,7 @@ const difference: SetOps<unknown> = (A, B) => {
     }
 };
 
-const symmetricDifference: SetOps<unknown> = (A, B) => {
+const symmetricDifference: SetOps = (A, B) => {
     if (isObject(A) && isObject(B)) {
         return {...difference(A, B) as {}, ...difference(B, A) as {}};
     } else if (Array.isArray(A) && Array.isArray(B)) {

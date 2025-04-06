@@ -270,7 +270,7 @@ MIT
 
 [npm-img]: https://img.shields.io/npm/v/set-operations.svg
 [npm-url]: https://npmjs.com/package/set-operations
-[jsr-img]: https://img.shields.io/jsr/v/@indrajaala/set-operations
+[jsr-img]: https://jsr.io/badges/@indrajaala/set-operations
 [jsr-url]: https://jsr.io/@indrajaala/set-operations
 [github-test-badge]: https://github.com/indrajaala/set-operations/actions/workflows/test.yml/badge.svg
 [publish-npm-badge]: https://github.com/indrajaala/set-operations/actions/workflows/publish-npm.yml/badge.svg

@@ -1,17 +1,15 @@
 {
   "name": "@indrajaala/set-operations",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "license": "MIT",
-  "exports": "./src/main.ts",
-  "imports": {
-    "@/": "./src/"
-  },
+  "exports": "./dist/main.js",
   "publish": {
     "include": [
       "jsr.json",
       "LICENSE",
       "README.MD",
-      "src/**/*.ts"
+      "dist/**/*.d.ts",
+      "dist/**/*.js"
     ]
   }
 }

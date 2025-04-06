@@ -1,6 +1,6 @@
 {
   "name": "set-operations",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Javascript Set operations",
   "type": "module",
   "repository": {
