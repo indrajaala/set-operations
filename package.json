@@ -20,7 +20,8 @@
   },
   "types": "dist/main.d.ts",
   "scripts": {
-    "build": "tsc && vite build",
+    "append-jsr-types": "cat ./src/jsrTypes.ts ./dist/main.js > ./dist/temp.js && mv ./dist/temp.js ./dist/main.js",
+    "build": "tsc && vite build && npm run append-jsr-types",
     "test": "vitest",
     "test-coverage": "vitest run --coverage"
   },

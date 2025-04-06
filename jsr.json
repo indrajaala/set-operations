@@ -8,8 +8,8 @@
       "jsr.json",
       "LICENSE",
       "README.MD",
-      "dist/**/*.d.ts",
-      "dist/**/*.js"
+      "dist/main.js",
+      "dist/main.d.ts"
     ]
   }
 }
